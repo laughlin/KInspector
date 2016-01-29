@@ -42,7 +42,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-	<DeployIisAppPath>kinspector.laughlinreview.com</DeployIisAppPath>
+    <DeployIisAppPath>kinspector.laughlinreview.com</DeployIisAppPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -267,7 +267,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>copy $(SolutionDir)\Bin\* $(ProjectDir)bin</PreBuildEvent>
+    <PreBuildEvent>copy $(ProjectDir)..\..\Bin\* $(ProjectDir)bin</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

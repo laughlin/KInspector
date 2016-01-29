@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 
@@ -15,7 +16,7 @@ namespace Kentico.KInspector.Modules
         /// <summary>
         /// Path to directory where metafiles with information about default installation files are located.
         /// </summary>
-        private const string DEFAULT_INSTALLATION_FILES_DIR_PATH = "Data\\DefaultInstallationFiles";
+        private string DEFAULT_INSTALLATION_FILES_DIR_PATH = ConfigurationManager.AppSettings["IsPublished"].Equals("true") ? Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName + "\\bin\\Data\\DefaultInstallationFiles\\" : Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Data\\DefaultInstallationFiles\\";
 
 
         public static readonly ProjectCodeFilesHelper Current = new ProjectCodeFilesHelper();

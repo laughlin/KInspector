@@ -45,7 +45,7 @@ Checks the following:
                 responses.Add("There are over 1 000 000 (" + contactsCount + " exactly) contacts in the database. Consider using old contact's deletion");
 
                 var anonymousCount = dbService.ExecuteAndGetScalar<int>("SELECT COUNT(*) FROM OM_Contact WHERE ContactLastName LIKE 'Anonymous%'");
-                var mergedCount = dbService.ExecuteAndGetScalar<int>("SELECT COUNT(*) FROM OM_Contact WHERE ContactMergedWithContactID NOT NULL");
+                var mergedCount = dbService.ExecuteAndGetScalar<int>("SELECT COUNT(*) FROM OM_Contact WHERE ContactMergedWithContactID IS NOT NULL");
 
                 responses.Add("Out of these " + contactsCount + " contacts, " + anonymousCount + " are anonymous and " + mergedCount + " are merged");
             }

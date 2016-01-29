@@ -3,6 +3,8 @@ using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Kentico.KInspector.Core;
+using System.IO;
+using System.Configuration;
 
 namespace Kentico.KInspector.Modules
 {
@@ -31,7 +33,8 @@ namespace Kentico.KInspector.Modules
             DataTable sourceUIElements = dbService.ExecuteAndGetTableFromFile(String.Format("UIElementsDiffV{0}.sql", instanceInfo.Version.Major));
 
             var kenticoUIElements = new DataTable();
-            kenticoUIElements.ReadXml(String.Format("./Data/DefaultUIElements/{0}{1}.xml", instanceInfo.Version.Major, instanceInfo.Version.Minor));
+            var path = ConfigurationManager.AppSettings["IsPublished"].Equals("true") ? Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName + "\\bin\\Data\\" : new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Data\\").LocalPath;
+            kenticoUIElements.ReadXml(String.Format(path+"/DefaultUIElements/{0}{1}.xml", instanceInfo.Version.Major, instanceInfo.Version.Minor));
 
             RemoveHashesFromStringRecords(sourceUIElements);
 

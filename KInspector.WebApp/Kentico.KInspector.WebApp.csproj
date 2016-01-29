@@ -206,9 +206,6 @@
     <Content Include="Scripts\Vendor\jquery.stickytableheaders.min.js" />
     <Content Include="Scripts\Vendor\ui.js" />
     <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

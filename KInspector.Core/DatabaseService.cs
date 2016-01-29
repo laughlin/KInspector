@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -96,7 +97,7 @@ namespace Kentico.KInspector.Core
         /// <param name="parameters">Optional parameters send to SQL script</param>
         public DataTable ExecuteAndGetTableFromFile(string filePath, params SqlParameter[] parameters)
         {
-            var path = new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath;
+            var path = ConfigurationManager.AppSettings["IsPublished"].Equals("true") ? Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName + "\\bin\\Scripts\\" : new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath;
             using (var sr = new StreamReader(path + "\\" + filePath))
             {
                 var fileContents = sr.ReadToEnd();
@@ -164,7 +165,8 @@ namespace Kentico.KInspector.Core
         /// <param name="filePath">Path of the file in './Scripts/' folder</param>
         public DataSet ExecuteAndGetDataSetFromFile(string filePath)
         {
-            using (var sr = new StreamReader(new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath + filePath))
+            var path = ConfigurationManager.AppSettings["IsPublished"].Equals("true") ? Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName + "\\bin\\Scripts\\" : new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath;
+            using (var sr = new StreamReader(path + filePath))
             {
                 var fileContents = sr.ReadToEnd();
                 return ExecuteAndGetDataSet(fileContents);
@@ -216,7 +218,8 @@ namespace Kentico.KInspector.Core
         /// </remarks>
         public List<string> ExecuteAndGetPrintsFromFile(string filePath)
         {
-            using (var sr = new StreamReader(new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath + filePath))
+            var path = ConfigurationManager.AppSettings["IsPublished"].Equals("true") ? Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName + "\\bin\\Scripts\\" : new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath;
+            using (var sr = new StreamReader(path + filePath))
             {
                 var fileContents = sr.ReadToEnd();
                 return ExecuteAndGetPrints(fileContents);

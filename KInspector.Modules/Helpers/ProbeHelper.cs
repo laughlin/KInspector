@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 
 namespace Kentico.KInspector.Modules
@@ -34,7 +35,7 @@ namespace Kentico.KInspector.Modules
         {
             get
             {
-                return Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\ProbeData\\";
+                return ConfigurationManager.AppSettings["IsPublished"].Equals("true") ? Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName + "\\bin\\ProbeData\\" : Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\ProbeData\\";
             }
         }
 

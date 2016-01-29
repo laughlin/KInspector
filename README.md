@@ -1,3 +1,20 @@
+# Changes Made By LC
+### web-app branch contains changes (updates need to be manually merged)
+### Master branch should match [Kentico/KInspector Master](https://github.com/Kentico/KInspector)
+ - KInspector.sln was modified to include the new Web App project
+ - KInspector.Modules\Helpers\ProbeHelper.cs was modified on line 32 to use a full path, not a relative one
+ - KInspector.Core\ModuleLoader.cs was modified on line 42 to search for assemblies using a full path, not a relative one
+ - KInspector.Core\DatabaseService.cs 
+   - Modified on line 16 to increase the timeout period
+   - Changed script paths from relative to full
+ - Added KInspector.WebApp Project which allows KInspector to be run as a Web App
+   - KInspector.Web\Program.cs is no longer needed as it is just a wrapper for starting the API
+   - KInspector.Web\WebAPI\Startup.cs was split up between KInspector.WebApp\Starup.cs and KInspector.WebApp\App_Start\WebApiConfig.cs
+   - KInspector.Web\WebAPI\Controllers\ModulesController.cs was moved to KInspector.WebApp\Controllers\ModulesController.cs
+   - KInspector.Web\FrontEnd\CSS was moved to KInspector.WebApp\CSS
+   - KInspector.Web\FrontEnd\Scripts was moved to KInspector.WebApp\Scripts
+   - KInspector.Web\FrontEnd\index.html was moved to KInspector.WebApp\Views\Home\Index.cshtml
+
 # KInspector
 
 [![Join the chat at https://gitter.im/Kentico/KInspector](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Kentico/KInspector?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

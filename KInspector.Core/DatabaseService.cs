@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 
 namespace Kentico.KInspector.Core
 {
@@ -12,7 +13,7 @@ namespace Kentico.KInspector.Core
     public class DatabaseService : IDatabaseService
     {
         private readonly string mConnectionString;
-        private const int SQL_COMMAND_TIMEOUT_SECONDS = 90;
+        private const int SQL_COMMAND_TIMEOUT_SECONDS = 1000;
 
 
         public DatabaseService(InstanceConfig config)
@@ -95,7 +96,8 @@ namespace Kentico.KInspector.Core
         /// <param name="parameters">Optional parameters send to SQL script</param>
         public DataTable ExecuteAndGetTableFromFile(string filePath, params SqlParameter[] parameters)
         {
-            using (var sr = new StreamReader("./Scripts/" + filePath))
+            var path = new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath;
+            using (var sr = new StreamReader(path + "\\" + filePath))
             {
                 var fileContents = sr.ReadToEnd();
                 return ExecuteAndGetTable(fileContents, parameters);
@@ -162,7 +164,7 @@ namespace Kentico.KInspector.Core
         /// <param name="filePath">Path of the file in './Scripts/' folder</param>
         public DataSet ExecuteAndGetDataSetFromFile(string filePath)
         {
-            using (var sr = new StreamReader("./Scripts/" + filePath))
+            using (var sr = new StreamReader(new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath + filePath))
             {
                 var fileContents = sr.ReadToEnd();
                 return ExecuteAndGetDataSet(fileContents);
@@ -214,7 +216,7 @@ namespace Kentico.KInspector.Core
         /// </remarks>
         public List<string> ExecuteAndGetPrintsFromFile(string filePath)
         {
-            using (var sr = new StreamReader("./Scripts/" + filePath))
+            using (var sr = new StreamReader(new Uri(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName + "\\KInspector.Modules\\Scripts\\").LocalPath + filePath))
             {
                 var fileContents = sr.ReadToEnd();
                 return ExecuteAndGetPrints(fileContents);

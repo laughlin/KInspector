@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Ninject;
 using Ninject.Extensions.Conventions;
+using System.IO;
+using System.Reflection;
 
 namespace Kentico.KInspector.Core
 {
@@ -34,9 +36,10 @@ namespace Kentico.KInspector.Core
 
         private static void LoadModules()
         {
+            var path = new Uri(Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetName().CodeBase)).LocalPath;
             var kernel = new StandardKernel();
             kernel.Bind(c =>
-                    c.FromAssembliesInPath("./")
+                    c.FromAssembliesInPath(path)
                         .SelectAllClasses()
                         .InheritedFrom<IModule>()
                         .BindAllInterfaces());

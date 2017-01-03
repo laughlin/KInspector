@@ -1,6 +1,7 @@
 # Changes Made By LC
 ### web-app branch contains changes (updates need to be manually merged)
 ### Master branch should match [Kentico/KInspector Master](https://github.com/Kentico/KInspector)
+ - All projects were downgraded to .NET 4.5 so TeamCity can build/deploy
  - KInspector.sln was modified to include the new Web App project
  - KInspector.Modules\Helpers\ProbeHelper.cs was modified on line 32 to use a full path, not a relative one
  - KInspector.Core\ModuleLoader.cs was modified on line 42 to search for assemblies using a full path, not a relative one

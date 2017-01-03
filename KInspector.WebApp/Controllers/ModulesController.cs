@@ -1,9 +1,9 @@
-﻿using Kentico.KInspector.Core;
-using System;
+﻿using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Kentico.KInspector.Core;
 
 namespace KInspector.Controllers
 {

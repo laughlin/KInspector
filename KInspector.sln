@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F3EF3619-F312-4B17-B5BE-5764A8010D38}"
 	ProjectSection(SolutionItems) = preProject
@@ -28,6 +28,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kentico.KInspector.WebApp", "KInspector.WebApp\Kentico.KInspector.WebApp.csproj", "{D583CD74-7E22-4E66-A902-091DB4ECEFF4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{83C55B9E-F597-4941-A41A-932154E256D4} = {83C55B9E-F597-4941-A41A-932154E256D4}
+		{1D75B5FF-71B8-403F-8AED-84B1F32D6617} = {1D75B5FF-71B8-403F-8AED-84B1F32D6617}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
